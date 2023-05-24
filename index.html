@@ -5,32 +5,21 @@
     <title>Title</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        let WebApp = window.Telegram.WebApp;
-
-        let MainButton = WebApp.MainButton;
-        let BackButton = WebApp.BackButton;
-
-        MainButton.show();
-        BackButton.show();
-
-        MainButton.onClick(function() {
-            WebApp.showAlert("Ой як файно");
-        });
-        WebApp.onEvent('mainButtonClicked', function() {
-            WebApp.showAlert("Ой як файно2");
+        const app = window.Telegram.WebApp;
+        app.MainButton.show();
+        app.MainButton.onClick(function() {
+            app.showAlert("Ой як файно");
         });
 
-        BackButton.onClick(function() {
-            WebApp.showAlert("Тільки вперед!");
+        app.BackButton.show();
+        app.BackButton.onClick(function() {
+            app.showAlert("Тільки вперед!");
+            app.BackButton.hide();
+        });
 
-            BackButton.hide();
-        });
-        WebApp.onEvent('backButtonClicked', function() {
-            WebApp.showAlert("Тільки вперед2!");
-        });
     </script>
 </head>
 <body>
-.
+@
 </body>
 </html>

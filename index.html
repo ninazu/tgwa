@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+
+    </style>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        const app = window.Telegram.WebApp;
-        app.MainButton.show();
-        app.MainButton.onClick(function() {
-            app.showAlert("Ой як файно");
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        tg.MainButton.show();
+        tg.MainButton.onClick(function() {
+            tg.showAlert("Ой як файно");
         });
 
-        app.BackButton.show();
-        app.BackButton.onClick(function() {
-            app.showAlert("Тільки вперед!");
-            app.BackButton.hide();
+        tg.BackButton.show();
+        tg.BackButton.onClick(function() {
+            tg.showAlert("Тільки вперед!");
+            tg.BackButton.hide();
         });
 
+        Telegram.WebApp.onEvent(themeChanged, function(){
+            tg.showAlert(themeChanged);
+        });
     </script>
 </head>
 <body>

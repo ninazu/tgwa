@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--suppress CssUnresolvedCustomProperty -->
+    <style>
+        body {
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .hint {
+            color: var(--tg-theme-hint-color);
+        }
+
+        .link {
+            color: var(--tg-theme-link-color);
+        }
+
+        .button {
+            background: var(--tg-theme-button-color);
+            color: var(--tg-theme-button-text-color);
+            border: none;
+            font-size: 18px;
+        }
+
+        .button:not(:last-child) {
+            margin-bottom: 20px
+        }
+    </style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        const tg = window.Telegram.WebApp;
+        //tg.expand();
+
+        //tg.MainButton.show();
+        // tg.MainButton.onClick(function() {
+        //     //tg.showAlert("Ой як файно");
+        //     //tg.sendData("some string that we need to send");
+        //     tg.showAlert(tg.initDataUnsafe.user.id);
+        //     console.log(tg);
+        // });
+
+        //tg.BackButton.show();
+        // tg.BackButton.onClick(function() {
+        //     tg.showAlert("Тільки вперед!");
+        //     tg.BackButton.hide();
+        // });
+        // tg.showAlert(tg.initDataUnsafe.user.id);
+        Telegram.WebApp.onEvent("themeChanged", function () {
+        });
+        Telegram.WebApp.onEvent("viewportChanged", function () {
+        });
+
+        Telegram.WebApp.onEvent("mainButtonClicked", function () {
+        });
+        Telegram.WebApp.onEvent("backButtonClicked", function () {
+        });
+        Telegram.WebApp.onEvent("settingsButtonClicked", function () {
+        });
+
+        Telegram.WebApp.onEvent("invoiceClosed", function () {
+        });
+        Telegram.WebApp.onEvent("popupClosed", function () {
+        });
+
+        Telegram.WebApp.onEvent("qrTextReceived", function () {
+        });
+        Telegram.WebApp.onEvent("clipboardTextReceived", function (e) {
+            if (e.data === null) {
+                //Not allowed
+                return
+            }
+
+            if (e.data === "") {
+                //Non text context
+                return;
+            }
+
+
+
+            tg.showAlert(e.data);
+        });
+
+    </script>
+</head>
+<body>
+V2
+</body>
+</html>

@@ -1,58 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        body{
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 18px;
-        }
-        .hint{
-            color: var(--tg-theme-hint-color);
-        }
-        .link{
-            color: var(--tg-theme-link-color);
-        }
-        .button{
-            background: var(--tg-theme-button-color);
-            color: var(--tg-theme-button-text-color);
-            border: none;
-            font-size: 18px;
-        }
-        .button:not(:last-child){
-            margin-bottom: 20px
-        }
-    </style>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
 
-        tg.MainButton.show();
-        tg.MainButton.onClick(function() {
-            //tg.showAlert("Ой як файно");
-            //tg.sendData("some string that we need to send");
-            tg.showAlert(tg.initDataUnsafe.user.id);
-            console.log(tg);
-        });
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
 
-        tg.BackButton.show();
-        tg.BackButton.onClick(function() {
-            tg.showAlert("Тільки вперед!");
-            tg.BackButton.hide();
-        });
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
-        Telegram.WebApp.onEvent("themeChanged", function(){
-            tg.showAlert(tg.initDataUnsafe.user.id);
-        });
-    </script>
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="telegram_demo">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>telegram_demo</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    Telegram.WebApp.onEvent("clipboardTextReceived", function (e) {
+      if (e.data === null) {
+        //Not allowed
+        return
+      }
+
+      if (e.data === "") {
+        //Non text context
+        return;
+      }
+
+
+
+      tg.showAlert(e.data);
+    });
+  </script>
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    var serviceWorkerVersion = '3639416374';
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
 </head>
 <body>
-V2
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        }
+      }).then(function(engineInitializer) {
+        return engineInitializer.initializeEngine();
+      }).then(function(appRunner) {
+        return appRunner.runApp();
+      });
+    });
+  </script>
 </body>
 </html>

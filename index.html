@@ -14,7 +14,9 @@
         tg.MainButton.show();
         tg.MainButton.onClick(function() {
             //tg.showAlert("Ой як файно");
-            tg.sendData("some string that we need to send");
+            //tg.sendData("some string that we need to send");
+            tg.showAlert(tg.initDataUnsafe.user.id);
+            console.log(tg);
         });
 
         tg.BackButton.show();
@@ -23,9 +25,8 @@
             tg.BackButton.hide();
         });
 
-        Telegram.WebApp.onEvent(themeChanged, function(){
+        Telegram.WebApp.onEvent("themeChanged", function(){
             tg.showAlert(tg.initDataUnsafe.user.id);
-            tg.showAlert(themeChanged);
         });
     </script>
 </head>
